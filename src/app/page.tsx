@@ -31,7 +31,7 @@ export default function HomePage() {
       {/* Hero Section with Background Image */}
       <section className="relative min-h-[90vh] flex items-center bg-cover bg-center bg-no-repeat" 
         style={{ 
-          backgroundImage: 'url(/images/hero-bg.jpg)',
+          backgroundImage: 'url(/images/hero-bg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}

@@ -1,21 +1,19 @@
-# RentNest 🏠 — Frontend
+# RentNest
 
-A Next.js 15 (App Router) frontend for the RentNest rental property marketplace, consuming the [RentNest backend API](../rentnest-backend). Three roles — Tenant, Landlord, Admin — with fully role-adaptive UI and protected routes via Next.js Middleware.
+A Next.js 15 (App Router) frontend for the RentNest rental property marketplace. Three roles - Tenant, Landlord, Admin  with fully role-adaptive UI and protected routes via Next.js Middleware.
 
 ---
 
 ## 1. Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 15 (App Router), TypeScript |
-| Styling | Tailwind CSS |
-| Forms | React Hook Form + Zod |
-| Server State | TanStack Query |
-| Global State | Zustand (persisted session) |
-| Route Protection | Next.js Middleware (JWT cookie) |
-| Payments | Stripe Checkout (redirect flow) |
-| Toasts | sonner |
+- **Framework:** Next.js 15 (App Router) + TypeScript
+- **Styling:** Tailwind CSS - clean, responsive, no clutter
+- **Forms:** React Hook Form + Zod for validation
+- **Server State:** TanStack Query - fetching & caching made easy
+- **Global State:** Zustand with persistence - session stays put
+- **Route Protection:** Next.js Middleware reading JWT cookies
+- **Payments:** Stripe Checkout - redirect-based, no card handling on our end
+- **Toasts:** sonner - subtle, friendly notifications
 
 ---
 
@@ -27,18 +25,15 @@ cd rentnest-frontend
 npm install
 
 cp .env.example .env
-# set NEXT_PUBLIC_API_URL to your backend's URL (must end in /api)
 
 npm run dev   # http://localhost:3000
 ```
-
-Make sure your [backend](../rentnest-backend) is running and seeded (`npm run seed` there) before testing login/registration here.
 
 ### Environment Variables
 
 | Variable | Description |
 |---|---|
-| `NEXT_PUBLIC_API_URL` | Base URL of the RentNest backend API, including `/api` (e.g. `https://rentnest-api.onrender.com/api`) |
+| `NEXT_PUBLIC_API_URL` | Base URL of the RentNest backend API, including `/api` (e.g. `https://rentnest-backend-phi.vercel.app/api`) |
 
 ---
 
@@ -82,7 +77,7 @@ Password: admin123
 - No `rentnest_token` cookie → redirect to `/auth/login`.
 - Token present but role doesn't match the dashboard section (`/dashboard/landlord` visited by a tenant, etc.) → redirect to that user's own dashboard.
 
-The token is stored in a plain (non-httpOnly) cookie set right after login/register specifically so the middleware — which runs before any page renders — can read it. Real authorization is still enforced by the backend on every API call; this only gates which page shell loads.
+The token is stored in a plain (non-httpOnly) cookie set right after login/register specifically so the middleware - which runs before any page renders - can read it. Real authorization is still enforced by the backend on every API call; this only gates which page shell loads.
 
 ---
 
@@ -110,19 +105,16 @@ Test with Stripe's card `4242 4242 4242 4242`, any future expiry, any CVC.
 
 1. Push to GitHub, import the repo in Vercel.
 2. Set `NEXT_PUBLIC_API_URL` in Vercel's Environment Variables to your **deployed backend URL** (not localhost).
-3. Deploy — no special build command needed, Next.js is auto-detected.
+3. Deploy - no special build command needed, Next.js is auto-detected.
 4. Make sure your backend's CORS `CLIENT_URL` env var matches this frontend's deployed URL so requests aren't blocked.
 
 ---
 
 ## 9. Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start dev server |
-| `npm run build` | Production build |
-| `npm start` | Run production build |
-| `npm run lint` | Lint the project |
+`npm run dev` | Start dev server 
+`npm run build` | Production build 
+`npm start` | Run production build 
 
 ---
 

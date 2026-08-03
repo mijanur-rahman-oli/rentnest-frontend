@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { Home, Menu, X, LogOut, LayoutDashboard, ClipboardList } from "lucide-react";
+import { Menu, X, LogOut, LayoutDashboard, ClipboardList } from "lucide-react";
 import { useAuthStore } from "@/store/authStore";
 import { useLogout } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/Button";
@@ -22,22 +23,29 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 font-semibold text-brand-700">
-          <Home className="h-5 w-5" />
-          RentNest
+          <Image 
+            src="/images/rentnest_logo.jpg" 
+            alt="RentNest Logo" 
+            width={32} 
+            height={32}
+            className="h-8 w-auto"
+            priority
+          />
+          
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex">
-          <Link href="/properties" className="hover:text-brand-700">
+          <Link href="/properties" className="hover:text-brand-700 transition-colors">
             Browse Properties
           </Link>
           {user && (
-            <Link href={dashboardPath[user.role]} className="flex items-center gap-1 hover:text-brand-700">
+            <Link href={dashboardPath[user.role]} className="flex items-center gap-1 hover:text-brand-700 transition-colors">
               <LayoutDashboard className="h-4 w-4" />
               Dashboard
             </Link>
           )}
           {user?.role === "LANDLORD" && (
-            <Link href="/dashboard/landlord/requests" className="flex items-center gap-1 hover:text-brand-700">
+            <Link href="/dashboard/landlord/requests" className="flex items-center gap-1 hover:text-brand-700 transition-colors">
               <ClipboardList className="h-4 w-4" />
               Requests
             </Link>
